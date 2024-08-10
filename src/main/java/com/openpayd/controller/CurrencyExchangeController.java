@@ -1,11 +1,11 @@
-package org.openpayd.com.controller;
+package com.openpayd.controller;
 
+import com.openpayd.model.dto.ExchangeRateRequestDto;
+import com.openpayd.model.dto.ExchangeRateResponseDto;
+import com.openpayd.service.CurrencyExchangeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.openpayd.com.model.dto.BaseResponseDto;
-import org.openpayd.com.model.dto.ExchangeRateRequestDto;
-import org.openpayd.com.model.dto.ExchangeRateResponseDto;
-import org.openpayd.com.service.CurrencyExchangeService;
+import com.openpayd.model.dto.BaseResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

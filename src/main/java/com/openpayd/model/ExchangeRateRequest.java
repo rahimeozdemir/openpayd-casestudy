@@ -1,4 +1,4 @@
-package org.openpayd.com.model.dto;
+package com.openpayd.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ErrorMessageDto {
-    private String message;
+public class ExchangeRateRequest {
+    private String toCurrencyCode;
+    private String fromCurrencyCode;
 }

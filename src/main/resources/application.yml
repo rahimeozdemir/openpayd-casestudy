@@ -1,0 +1,5 @@
+server:
+  shutdown: graceful
+
+currency-client:
+  api-key: 8879ed561485543059a7df0abd8e7a4b
