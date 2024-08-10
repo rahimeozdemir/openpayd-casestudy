@@ -1,5 +1,6 @@
 package com.openpayd.client;
 
+import com.openpayd.model.ConvertCurrencyResponse;
 import com.openpayd.model.ExchangeRateResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,4 +13,10 @@ public interface CurrencyLayerClient {
     ExchangeRateResponse getExchangeRates(@RequestParam("access_key") String accessKey,
                                           @RequestParam("source") String source,
                                           @RequestParam("currencies") String currencies);
+
+    @GetMapping("/convert")
+    ConvertCurrencyResponse convert(@RequestParam("access_key") String accessKey,
+                                    @RequestParam("from") String from,
+                                    @RequestParam("to") String to,
+                                    @RequestParam("amount") Double amount);
 }

@@ -2,6 +2,7 @@ package com.openpayd.service;
 
 
 import com.openpayd.client.CurrencyLayerClient;
+import com.openpayd.model.dto.ConvertCurrencyResponseDto;
 import com.openpayd.model.dto.ExchangeRateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,15 @@ public class CurrencyExchangeService {
 
         return ExchangeRateResponseDto.builder()
                 .quote(response.getQuotes().get(fromCurrencyCode + toCurrencyCode))
+                .build();
+    }
+
+    public ConvertCurrencyResponseDto convert(String fromCurrencyCode, String toCurrencyCode, Double amount) {
+        var response = client.convert(apiKey, fromCurrencyCode, toCurrencyCode, amount);
+
+        return ConvertCurrencyResponseDto.builder()
+                .convertedAmount(response.getResult())
+                .timestamp(response.getInfo().getTimestamp())
                 .build();
     }
 
