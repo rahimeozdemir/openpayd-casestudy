@@ -1,6 +1,9 @@
 package com.openpayd.controller;
 
-import com.openpayd.model.dto.*;
+import com.openpayd.model.dto.ConversationHistoryResponseDto;
+import com.openpayd.model.dto.ConvertCurrencyRequestDto;
+import com.openpayd.model.dto.ConvertCurrencyResponseDto;
+import com.openpayd.model.dto.ExchangeRateResponseDto;
 import com.openpayd.model.dto.common.BaseResponseDto;
 import com.openpayd.service.CurrencyExchangeService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +45,7 @@ public class CurrencyExchangeController {
                 .data(exchangeRate)
                 .build());
     }
+
 
     @GetMapping("/conversation-histories")
     public ResponseEntity<BaseResponseDto<ConversationHistoryResponseDto>> getAllConversations(

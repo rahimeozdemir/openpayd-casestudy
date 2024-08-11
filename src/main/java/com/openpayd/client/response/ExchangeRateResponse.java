@@ -1,4 +1,4 @@
-package com.openpayd.model;
+package com.openpayd.client.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

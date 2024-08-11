@@ -1,7 +1,7 @@
 package com.openpayd.client;
 
-import com.openpayd.model.ConvertCurrencyResponse;
-import com.openpayd.model.ExchangeRateResponse;
+import com.openpayd.client.response.ConvertCurrencyResponse;
+import com.openpayd.client.response.ExchangeRateResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

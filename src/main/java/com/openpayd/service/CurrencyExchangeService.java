@@ -11,6 +11,7 @@ import com.openpayd.repository.CurrencyExchangeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class CurrencyExchangeService {
     @Value("${currency-client.api-key}")
     private String apiKey;
 
+    @Cacheable(value = "calculateExchangeRateCache")
     public ExchangeRateResponseDto calculateExchangeRate(String fromCurrencyCode, String toCurrencyCode) {
         var response = client.getExchangeRates(apiKey, fromCurrencyCode, toCurrencyCode);
 

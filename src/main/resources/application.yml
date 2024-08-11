@@ -15,5 +15,16 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
   h2:
     console.enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        cache: TRACE
+      hibernate:
+        SQL: DEBUG
