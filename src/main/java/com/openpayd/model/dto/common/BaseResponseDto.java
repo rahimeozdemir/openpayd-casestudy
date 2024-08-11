@@ -1,4 +1,4 @@
-package com.openpayd.model.dto;
+package com.openpayd.model.dto.common;
 
 import lombok.Builder;
 import lombok.Data;

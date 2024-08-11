@@ -1,14 +1,12 @@
 package com.openpayd.controller;
 
 import com.openpayd.model.dto.*;
+import com.openpayd.model.dto.common.BaseResponseDto;
 import com.openpayd.service.CurrencyExchangeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +17,11 @@ public class CurrencyExchangeController {
 
     @GetMapping("/exchange-rate")
     public ResponseEntity<BaseResponseDto<ExchangeRateResponseDto>> calculateExchangeRate(
-            @RequestBody ExchangeRateRequestDto request) {
+            @RequestParam String fromCurrencyCode,
+            @RequestParam String toCurrencyCode
+            ) {
 
-        var exchangeRate = service.calculateExchangeRate(request.getFromCurrencyCode(), request.getToCurrencyCode());
+        var exchangeRate = service.calculateExchangeRate(fromCurrencyCode, toCurrencyCode);
 
         return ResponseEntity.ok(BaseResponseDto.<ExchangeRateResponseDto>builder()
                 .data(exchangeRate)
@@ -40,6 +40,20 @@ public class CurrencyExchangeController {
 
         return ResponseEntity.ok(BaseResponseDto.<ConvertCurrencyResponseDto>builder()
                 .data(exchangeRate)
+                .build());
+    }
+
+    @GetMapping("/conversation-histories")
+    public ResponseEntity<BaseResponseDto<ConversationHistoryResponseDto>> getAllConversations(
+            @RequestParam String convertedDate,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size
+    ) {
+
+        var data = service.getAllConversations(convertedDate, page, size);
+
+        return ResponseEntity.ok(BaseResponseDto.<ConversationHistoryResponseDto>builder()
+                .data(data)
                 .build());
     }
 }

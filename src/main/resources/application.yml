@@ -3,3 +3,17 @@ server:
 
 currency-client:
   api-key: 8879ed561485543059a7df0abd8e7a4b
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:foreignexchangehistory
+    username: superuser
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console.enabled: true

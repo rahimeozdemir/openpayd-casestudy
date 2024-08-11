@@ -8,5 +8,5 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class ExchangeRateResponseDto {
-    Double quote;
+    private Double quote;
 }

@@ -1,7 +1,7 @@
 package com.openpayd.exception;
 
-import com.openpayd.model.dto.BaseResponseDto;
-import com.openpayd.model.dto.ErrorMessageDto;
+import com.openpayd.model.dto.common.BaseResponseDto;
+import com.openpayd.model.dto.common.ErrorMessageDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
