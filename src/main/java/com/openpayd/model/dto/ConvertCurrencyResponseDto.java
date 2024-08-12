@@ -10,5 +10,5 @@ import java.time.LocalDateTime;
 @Data
 public class ConvertCurrencyResponseDto {
     private Double convertedAmount;
-    private LocalDateTime dateTime;
+    private LocalDateTime convertedDate;
 }
