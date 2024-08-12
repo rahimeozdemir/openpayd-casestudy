@@ -2,6 +2,7 @@ package com.openpayd.strategy;
 
 import com.openpayd.client.CurrencyLayerClient;
 import com.openpayd.client.response.ConvertCurrencyResponse;
+import com.openpayd.client.response.ExchangeRateResponse;
 import com.openpayd.exception.ExternalApiCallException;
 import com.openpayd.model.dto.ConvertCurrencyResponseDto;
 import com.openpayd.util.DateTimeUtil;
@@ -24,7 +25,19 @@ public class CurrencyLayerApiStrategy implements ExchangeRateStrategy {
 
     @Override
     public Double getExchangeRate(String fromCurrencyCode, String toCurrencyCode) {
-        var response = client.getExchangeRates(apiKey, fromCurrencyCode, toCurrencyCode);
+        ExchangeRateResponse response;
+        try {
+            response = client.getExchangeRates(apiKey, fromCurrencyCode, toCurrencyCode);
+        } catch (Exception e) {
+            log.error("Error occurred while calling. Error:{}", e.getMessage());
+            throw new ExternalApiCallException(e.getMessage(), e.getCause());
+        }
+
+        if (Objects.nonNull(response) && !response.getSuccess()){
+            log.error("Api returned unsuccessful response");
+            throw new ExternalApiCallException("Api returned unsuccessful response");
+        }
+
         return response.getQuotes().get(fromCurrencyCode + toCurrencyCode);
     }
 
@@ -36,6 +49,11 @@ public class CurrencyLayerApiStrategy implements ExchangeRateStrategy {
         } catch (Exception e) {
             log.error("Error occurred while calling. Error:{}", e.getMessage());
             throw new ExternalApiCallException(e.getMessage(), e.getCause());
+        }
+
+        if (Objects.nonNull(response) && !response.getSuccess()){
+            log.error("Api returned unsuccessful response");
+            throw new ExternalApiCallException("Api returned unsuccessful response");
         }
 
         if (Objects.isNull(response) || Objects.isNull(response.getResult())) {

@@ -1,18 +1,15 @@
 package com.openpayd.client.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.extern.jackson.Jacksonized;
 
 import java.util.Map;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Builder
+@Jacksonized
+@Data
 public class ExchangeRateResponse {
-    private boolean success;
+    private Boolean success;
     private String source;
     private Map<String, Double> quotes;
 }

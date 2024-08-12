@@ -56,10 +56,10 @@ public class CurrencyExchangeService {
         return response;
     }
 
-    public ConversationHistoryResponseDto getAllConversations(String timestamp, int page, int size) {
+    public ConversationHistoryResponseDto getAllConversations(String dateTime, int page, int size) {
         Pageable paging = PageRequest.of(page, size);
 
-        var convertedDate = DateTimeUtil.convertStringToLocalDateTime(timestamp);
+        var convertedDate = DateTimeUtil.convertStringToLocalDateTime(dateTime);
         var currencyConversationList = repository.findByConvertedDateAfter(convertedDate, paging);
 
         var data = ConversationHistory.INSTANCE.tasksToTaskDtoList(currencyConversationList);
